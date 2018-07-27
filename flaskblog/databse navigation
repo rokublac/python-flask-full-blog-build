@@ -1,0 +1,16 @@
+from flaskblog import db
+from flaskblog.models import User
+
+-- query all users
+User.query.all()
+
+-- query first result
+User.query.first()
+
+-- filter results (eg. username)
+User.query.filter_by(username='Bob').all()
+
+-- delete database
+db.drop_all
+
+-- 
