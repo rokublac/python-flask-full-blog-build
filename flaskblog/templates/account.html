@@ -1,4 +1,63 @@
 {% extends "layout.html" %}
 {% block content %}
-	<h1>{{ current_user.username }}</h1>
+	<div class="content-section">
+		<div class="media">
+			<img src="{{ profile_image }}" alt="userimage" class="rounded-circle account-img">
+			<div class="media-body">
+				<h2 class="account-heading">{{ current_user.username }}</h2>
+				<p class="text-secondary">{{ current_user.email }}</p>
+			</div>
+		</div>
+		<!-- Account update form START -->
+			<form method='POST' action="" enctype="multipart/form-data">
+				<!-- hidden tag adds a Cross-site Request Forgery token (CSRF) -->
+				{{ form.hidden_tag() }}
+				<fieldset class="form-group">
+					<legend class="border-bottom mb-4">Account Information</legend>
+					<!-- username field-->
+					<div class="form-group">
+						{{ form.username.label(class="form-control-label") }}
+						{% if form.username.errors %}
+							{{ form.username(class="form-control form-control-lg is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.username.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+						{% else %}
+							{{ form.username(class="form-control form-control-lg") }}
+						{% endif %}
+					</div>
+					<!-- email field-->
+					<div class="form-group">
+						{{ form.email.label(class="form-control-label") }}
+						{% if form.email.errors %}
+							{{ form.email(class="form-control form-control-lg is-invalid") }}
+							<div class="invalid-feedback">
+								{% for error in form.email.errors %}
+									<span>{{ error }}</span>
+								{% endfor %}
+							</div>
+						{% else %}
+							{{ form.email(class="form-control form-control-lg") }}
+						{% endif %}
+					</div>
+					<!-- update profile picture -->
+					<div class="form-group">
+						{{ form.display_picture.label }}
+						{{ form.display_picture(class="form-control-file") }}
+						{% if form.display_picture.errors %}
+							{% for error in form.display_picture.errors %}
+								<span class="text-danger">{{ error }}</span><br />
+							{% endfor %}
+						{% endif %}
+					</div>
+					<!-- submit button -->
+					<div class="form-group">
+						{{ form.submit(class="btn btn-outline-info")}}
+					</div>
+				</fieldset>
+			</form>
+			<!-- Account update form END -->
+	</div>
 {% endblock content %}
