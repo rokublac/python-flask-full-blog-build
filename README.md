@@ -1,6 +1,6 @@
 # Flask Blog Website
 
-Basic blog website where you can register, login and create/delete/update your blog posts, and read posts by other users. 
+Basic blog website where you can register, login and create/delete/update your blog posts, and read posts by other users. (To be deployed some time in the future)
 
 MongoDB:
  - Store users and blog posts
